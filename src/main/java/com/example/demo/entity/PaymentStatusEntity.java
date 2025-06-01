@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class PaymentStatus {
+public class PaymentStatusEntity {
     @Id
-    private Long id;
     private Long paymentId;
-    private String status;
-    private LocalDateTime updateTimestamp;
-    private boolean published;
+    private String paymentStatus;
+    private LocalDateTime sourceTimestamp;
+    private boolean scheduled;
+    private boolean cancelled;
 }

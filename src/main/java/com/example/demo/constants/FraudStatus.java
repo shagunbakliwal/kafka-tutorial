@@ -1,5 +1,5 @@
 package com.example.demo.constants;
 
 public enum FraudStatus {
-    PENDING_REVIEW, SUCCESS, FRAUDULENT;
+    OFFLINE_REVIEW, SUCCESS, FAILED;
 }

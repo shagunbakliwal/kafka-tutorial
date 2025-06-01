@@ -6,6 +6,7 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
 
   h2:
     console:
@@ -18,3 +19,8 @@ fraud:
     interval: PT5H
     enabled: true
     threshold: 1000
+
+java:
+  security:
+    debug: providers
+    providers: debug

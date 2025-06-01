@@ -1,15 +1,20 @@
+/*
 package com.example.demo.listener;
 
-import com.example.demo.entity.PaymentStatus;
+import com.example.demo.entity.PaymentStatusEntity;
 import com.example.demo.repository.PaymentRepository;
 import com.example.demo.service.EventBridgeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+*/
+/*
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
+*//*
+
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -31,13 +36,13 @@ public class FraudListener {
     @KafkaListener(topics = "topicName", groupId = "foo")
     public void listen(@Payload Long paymentId, @Payload String status, @Header(KafkaHeaders.RECEIVED_PARTITION) int partition, Acknowledgment acknowledgment) {
         log.info("Received Message: " + paymentId + status + " from partition: " + partition);
-        Optional<PaymentStatus> byId = paymentRepository.findById(paymentId);
+        Optional<PaymentStatusEntity> byId = paymentRepository.findById(paymentId);
         if (byId.isPresent()) {
-            PaymentStatus paymentStatus = byId.get();
-            paymentStatus.setStatus(status);
-            paymentRepository.save(paymentStatus);
-            eventBridgeService.cancelEvent(paymentStatus.getPaymentId().toString());
-            log.info("Updated Payment Status: " + paymentStatus);
+            PaymentStatusEntity paymentStatusEntity = byId.get();
+            paymentStatusEntity.setPaymentStatus(status);
+            paymentRepository.save(paymentStatusEntity);
+            eventBridgeService.cancelSchedule(paymentStatusEntity.getPaymentId());
+            log.info("Updated Payment Status: " + paymentStatusEntity);
         } else {
             log.error("Payment ID not found: " + paymentId);
         }
@@ -45,3 +50,4 @@ public class FraudListener {
         acknowledgment.acknowledge();
     }
 }
+*/
